@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Multi-page template</title>
+  <title>Bsides PDX 2015 Badger</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -15,13 +15,22 @@
 <div data-role="page">
 
   <div data-role="header">
-    <h1>Single page</h1>
+    <h1>Welcome</h1>
     </div><!-- /header -->
 
   <div role="main" class="ui-content">
-    <p>This is a single page boilerplate template that you can copy to build your first jQuery Mobile page. Each link or form from here will pull a new page in via Ajax to support the animated page transitions.</p>
-    <p>Just view the source and copy the code to get started. All the CSS and JS is linked to the jQuery CDN versions so this is super easy to set up. Remember to include a meta viewport tag in the head to set the zoom level.</p>
-    <p>This template is standard HTML document with a single "page" container inside, unlike a <a href="../pages-multi-page/" data-ajax="false">multi-page template</a> that has multiple pages within it. We strongly recommend building your site or app as a series of separate pages like this because it's cleaner, more lightweight and works better without JavaScript.</p>
+    <p>You have found a BSides PDX badger.  This web-application is actually being served from your badge.</p>
+
+    <ul data-role="listview" data-inset="true" data-theme="a">
+      <li data-role="list-divider">Places to Go</li>
+      <li><a href="this_badger">This Badger</a></li>
+      <li><a href="all_badgers">All Badgers</a></li>
+      <li><a href="game">Badger Game</a></li>
+    </ul>
+
+    <iframe width="95%" src="https://www.youtube.com/embed/EIyixC9NsLI" frameborder="0" allowfullscreen></iframe>
+
+
     </div><!-- /content -->
 
   <div data-role="footer">
