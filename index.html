@@ -8,28 +8,27 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="code.js"></script>
 </head>
 
 <body>
 
-<div data-role="page">
-
+<div data-role="page" id="home">
   <div data-role="header">
     <h1>Welcome</h1>
     </div><!-- /header -->
 
   <div role="main" class="ui-content">
-    <p>You have found a BSides PDX badger.  This web-application is actually being served from your badge.</p>
+    <p>You have found a BSides PDX badger.  This web-application is actually being served from a badge.</p>
 
     <ul data-role="listview" data-inset="true" data-theme="a">
       <li data-role="list-divider">Places to Go</li>
-      <li><a href="this_badger">This Badger</a></li>
+      <li><a href="#this-badger">This Badger</a></li>
       <li><a href="all_badgers">All Badgers</a></li>
       <li><a href="game">Badger Game</a></li>
     </ul>
 
     <iframe width="95%" src="https://www.youtube.com/embed/EIyixC9NsLI" frameborder="0" allowfullscreen></iframe>
-
 
     </div><!-- /content -->
 
@@ -37,6 +36,49 @@
     <h4>Footer content</h4>
     </div><!-- /footer -->
 
+</div><!-- /page -->
+
+<div data-role="page" id="this-badger">
+  <div data-role="header">
+    <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-notext">No text</a>
+    <h1>This Badger</h1>
+  </div><!-- /header -->
+
+  <div role="main" class="ui-content">
+
+    <form>
+      <div>
+	<label for="text-basic">Badger Name:</label>
+	<input type="text" name="text-basic" id="badger-name" value="">
+      </div>
+
+      <div class="ui-field-contain"
+	   <label for="Nose">Nose:</label>
+	   <input type="range" name="nose" id="nose" data-number="3" min="0" max="100" value="0"/>
+     </div>
+     <div class="ui-field-contain"
+           <label for="Tail">Tail:</label>
+           <input type="range" name="tail" id="tail" data-number="0" min="0" max="100" value="0">
+     </div>
+     <div class="ui-field-contain"
+           <label for="Front_Foot">Front Foot:</label>
+           <input type="range" name="front_foot" id="front_foot" data-number="1" min="0" max="100" value="0">
+    </div>
+    <div class="ui-field-contain"
+           <label for="Back_Foot">Back Foot:</label>
+           <input type="range" name="back_foot" id="back_foot" data-number="2" min="0" max="100" value="0">
+    </div>
+
+
+
+</form>
+
+
+  </div><!-- /content -->
+
+  <div data-role="footer">
+    <h4>footer</h4>
+  </div><!-- /footer -->
 </div><!-- /page -->
 
 </body>
