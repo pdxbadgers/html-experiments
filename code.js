@@ -1,26 +1,31 @@
+ip = "192.168.43.123";
 
 function startup() {
     console.log("I'm a startup function");
     $("#badger-name").change(function(event) {
 	var name = event.target.value;
-	$.ajax("http://192.168.1.115/config?n="+name, {
+	$.ajax("http://"+ip+"/config?n="+name, {
 	    success: function(data) {
 		console.log("changed name succesfully");
 	    }
 	});
     });
 
+    //todo:
+    // make it such that the switches hide when you hit anything but none
+    // wire up switches and buttons to hit urls
+    // fix config
 
     $("body").pagecontainer({
 	beforechange: function( event, ui ) {
 	    var toPage = ui.toPage;
 	    if (typeof(toPage) == 'string' && toPage.indexOf("#this-badger") > -1) {
-		$.ajax("http://192.168.1.115/config", {
+		$.ajax("http://"+ip+"/config", {
 		    success: function(data) {
 			$("#badger-name").attr("value", data.split(",",2)[1]);
 			}
 		    });
-		$.ajax("http://192.168.1.115/blink?d=0", {
+		$.ajax("http://"+ip+"/blink?d=0", {
 		    success: function(data) {
 			var value = Math.round(data*100/1023.0);
 			$("#tail").attr('value', value.toString());
@@ -28,7 +33,7 @@ function startup() {
 			$("#tail").on("slidestop", function( event, ui ) {
 			    console.log("value:"+event.target.value);
 			    var adjusted_value = Math.round(event.target.value * 1023/100.0);
-			    var url = "http://192.168.1.115/blink?d=0&v=" + adjusted_value;
+			    var url = "http://"+ip+"/blink?d=0&v=" + adjusted_value;
     			    $.ajax(url, {
 				success: function(data) {
 				    console.log("changed blink value success");
