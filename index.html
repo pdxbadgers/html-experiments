@@ -15,102 +15,83 @@
 
 <div data-role="page" id="home">
   <div data-role="header">
-    <h1>Welcome</h1>
-    </div><!-- /header -->
+    <h1>Welcome to BSides PDX 2015!</h1>
+  </div><!-- /header -->
 
   <div role="main" class="ui-content">
     <p>You have found a BSides PDX badger.  This web-application is actually being served from a badge.</p>
 
-    <ul data-role="listview" data-inset="true" data-theme="a">
-      <li data-role="list-divider">Places to Go</li>
-      <li><a href="#this-badger">This Badger</a></li>
-      <li><a href="all_badgers">All Badgers</a></li>
-      <li><a href="game">Badger Game</a></li>
-    </ul>
+    <div>
+      <label for="text-basic">Badger Name:</label>
+      <input type="text" name="text-basic" id="badger-name" value="">
+    </div>
 
-    <!--<iframe width="95%" src="https://www.youtube.com/embed/EIyixC9NsLI" frameborder="0" allowfullscreen></iframe>-->
+    <div data-role="navbar">
+      <ul>
+        <li><a id="nonebutton" href="#">none</a></li>
+        <li><a id="allbutton" href="#">all</a></li>
+        <li><a id="blinkbutton" href="#">blink</a></li>
+        <li><a id="chasebutton" href="#">chase</a></li>
+        <li><a id="twinklebutton" href="#">twinkle</a></li>
+      </ul>
+    </div>
 
-    </div><!-- /content -->
+    <div id="switch_container">
+      <form>
+        <div class="ui-field-contain">
+          <label for="nose">Nose:</label>
+          <select name="nose" id="nose" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
 
-  <div data-role="footer">
-    <h4>Footer content</h4>
-    </div><!-- /footer -->
+        <div class="ui-field-contain">
+          <label for="front-foot">Front Foot:</label>
+          <select name="front-foot" id="front-foot" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
 
-</div><!-- /page -->
+        <div class="ui-field-contain">
+          <label for="back-foot">Back Foot:</label>
+          <select name="back-foot" id="back-foot" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
 
-<div data-role="page" id="this-badger">
-  <div data-role="header">
-    <a href="#home" class="ui-btn ui-icon-home ui-btn-icon-notext">No text</a>
-    <h1>This Badger</h1>
-  </div><!-- /header -->
+        <div class="ui-field-contain">
+          <label for="tail">Tail:</label>
+          <select name="tail" id="tail" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
 
-  <div role="main" class="ui-content">
+        <div class="ui-field-contain">
+          <label for="eye">Eye:</label>
+          <select name="eye" id="eye" data-role="flipswitch">
+            <option value="off">Off</option>
+            <option value="on">On</option>
+          </select>
+        </div>
 
-  <div>
-    <label for="text-basic">Badger Name:</label>
-    <input type="text" name="text-basic" id="badger-name" value="">
-  </div>
+      </form>
+    </div>
 
-  <div data-role="navbar">
-    <ul>
-      <li><a id="nonebutton" href="#" class="ui-button-active">none</a></li>
-      <li><a id="allbutton" href="#">all</a></li>
-      <li><a id="blink" href="#">blink</a></li>
-      <li><a id="chasebutton" href="#">chase</a></li>
-      <li><a id="twinklebutton" href="#">twinkle</a></li>
-    </ul>
-  </div>
-
-  <div id="switch_container">
-    <form>
-      <div class="ui-field-contain">
-        <label for="nose">Nose:</label>
-        <select name="nose" id="nose" data-role="flipswitch">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-
-      <div class="ui-field-contain">
-        <label for="front-foot">Front Foot:</label>
-        <select name="front-foot" id="front-foot" data-role="flipswitch">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-
-      <div class="ui-field-contain">
-        <label for="back-foot">Back Foot:</label>
-        <select name="back-foot" id="back-foot" data-role="flipswitch">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-
-      <div class="ui-field-contain">
-        <label for="tail">Tail:</label>
-        <select name="tail" id="tail" data-role="flipswitch">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-
-      <div class="ui-field-contain">
-        <label for="eye">Eye:</label>
-        <select name="eye" id="eye" data-role="flipswitch">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </div>
-
-    </form>
-  </div>
+    <div>
+      <label for="text-basic">The Flag:</label>
+      <input type="text" name="text-basic" id="badger-flag" value="">
+    </div>
 
   </div><!-- /content -->
 
   <div data-role="footer">
-    <h4>footer</h4>
+    <h4>Learn about me at <a href="http://badgers.bsidespdx.org/">badgers.bsidespdx.org</a></h4>
   </div><!-- /footer -->
+
 </div><!-- /page -->
 
 </body>
