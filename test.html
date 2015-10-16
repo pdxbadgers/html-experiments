@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <style>
+      .expired {
+        text-decoration: line-through;
+      }
+    </style>
+    <script>
+      var program = [
+        {"url": "leds?d=0&s=1", "status":"tail on", "pause": 1},
+        {"url": "leds?d=1&s=1", "status":"back foot on", "pause": 1},
+        {"url": "leds?d=2&s=1", "status":"front foot on", "pause": 1},
+        {"url": "leds?d=3&s=1", "status":"nose on", "pause": 1},
+        {"url": "leds?d=4&s=1", "status":"eye on", "pause": 1},
+        {"url": "leds?d=4&r=255&g=0&b=0", "status":"eye red", "pause": 1},
+        {"url": "leds?d=4&r=0&g=255&b=0", "status":"eye green", "pause": 1},
+        {"url": "leds?d=4&r=0&g=0&b=255", "status":"eye blue", "pause": 1},
+        {"url": "leds?m=none", "status":"all off", "pause": 1},
+        {"url": "leds?m=all", "status":"all on", "pause": 1},
+        {"url": "leds?m=chase", "status":"all chase", "pause": 5},
+        {"url": "leds?m=blink", "status":"all blink", "pause": 3},
+        {"url": "leds?m=twinkle", "status":"all twinkle", "pause": 5},
+        {"url": "leds?m=none", "status":"done", "pause": 0}
+      ];
+
+      var currentItem;
+      var baseUrl;
+
+      function init() {
+        currentItem = 0;
+        var address = document.getElementById("address").value;
+        baseUrl = "http://"+address+"/";
+        runTest();
+      }
+
+      function runTest() {
+        var url = baseUrl + program[currentItem]["url"];
+        console.log("testing: "+program[currentItem]["status"]);
+        var x = new XMLHttpRequest();
+        x.open("GET",url,false);
+        x.timeout = 3000;
+        x.send();
+
+        // set a timer for the delay time
+        currentItem++;
+        if (currentItem < program.length) {
+          setTimeout(runTest, program[currentItem]["pause"]*1000);
+        }
+        else
+        {
+          console.log("done.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="controls">
+      <button name="start" onclick="init()">Start</button>
+      <label for="address">Address or local name</label>
+      <input id="address" type="text" value="192.168.0."></input>
+    </div>
+    <div id="results">
+    </div>
+  </body>
+</html>
