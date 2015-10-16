@@ -1,0 +1,231 @@
+<html>
+  <head>
+    <style>
+      .expired {
+        text-decoration: line-through;
+      }
+      td {
+        text-align: center;
+      }
+    </style>
+    <script>
+
+      // two min warning
+      // 10 min remaining
+      // 5 min remaining
+      // time up
+      var schedule = [
+        // 09:00
+        {"time": "2015-10-16T08:57:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T09:12:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T09:15:00", "mode": "all", "duration": 10},
+
+        // 09:15
+        {"time": "2015-10-16T09:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T09:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T09:50:00", "mode": "all", "duration": 20},
+
+        // 10
+        {"time": "2015-10-16T09:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T10:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T10:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T10:50:00", "mode": "all", "duration": 20},
+
+        // 11
+        {"time": "2015-10-16T10:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T11:10:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T11:15:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T11:20:00", "mode": "all", "duration": 20},
+
+        // 11:30
+        {"time": "2015-10-16T11:27:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T11:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T11:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T11:50:00", "mode": "all", "duration": 20},
+
+        // 13:00
+        {"time": "2015-10-16T12:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T13:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T13:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T13:50:00", "mode": "all", "duration": 20},
+
+        // 14:00
+        {"time": "2015-10-16T13:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T14:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T14:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T14:50:00", "mode": "all", "duration": 20},
+
+        // 15:00
+        {"time": "2015-10-16T14:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T15:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T15:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T15:50:00", "mode": "all", "duration": 20},
+
+        // 16:00
+        {"time": "2015-10-16T15:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T16:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T16:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T16:50:00", "mode": "all", "duration": 20},
+
+        // 17:00
+        {"time": "2015-10-16T16:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-16T17:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-16T17:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-16T17:50:00", "mode": "all", "duration": 20},
+
+        // 19:55 - movie
+        {"time": "2015-10-16T19:55:00", "mode": "twinkle", "duration": 30},
+
+        // 17th
+        // 09:00
+        {"time": "2015-10-17T08:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T09:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T09:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T09:50:00", "mode": "all", "duration": 20},
+
+        // 10:00
+        {"time": "2015-10-17T09:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T10:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T10:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T10:50:00", "mode": "all", "duration": 20},
+
+        // 11:00
+        {"time": "2015-10-17T10:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T11:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T11:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T11:50:00", "mode": "all", "duration": 20},
+
+        // 13:00
+        {"time": "2015-10-17T12:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T13:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T13:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T13:50:00", "mode": "all", "duration": 20},
+
+        // 14:00
+        {"time": "2015-10-17T13:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T14:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T14:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T14:50:00", "mode": "all", "duration": 20},
+
+        // 15:00
+        {"time": "2015-10-17T14:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T15:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T15:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T15:50:00", "mode": "all", "duration": 20},
+
+        // 16:00
+        {"time": "2015-10-17T15:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T16:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T16:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T16:50:00", "mode": "all", "duration": 20},
+
+        // 17:00
+        {"time": "2015-10-17T16:57:00", "mode": "twinkle", "duration": 20},
+        {"time": "2015-10-17T17:40:00", "mode": "chase", "duration": 10},
+        {"time": "2015-10-17T17:45:00", "mode": "blink", "duration": 10},
+        {"time": "2015-10-17T17:50:00", "mode": "all", "duration": 20},
+
+        // 17:45
+        {"time": "2015-10-17T17:42:00", "mode": "twinkle", "duration": 20},
+
+      ];
+
+      var currentTime;
+
+      function init() {
+        console.log("initializing page");
+        // compute the second values for all times
+        for (event in schedule) {
+          schedule[event]["timesec"] = Date.parse(schedule[event]["time"]+"-0700");
+        }
+        fillTable();
+      }
+
+      function fillTable() {
+        var tableString = "<table><tr><th>Time</th><th>Duration</th><th>Mode</th></tr>";
+        for (event in schedule) {
+          var attr = "";
+          if (schedule[event]["timesec"] < new Date().getTime()) {
+            attr = " class=\"expired\"";
+            continue;
+          }
+          tableString += "<tr"+attr+"><td>"+schedule[event]["time"]+"</td><td>"+schedule[event]["duration"]+"</td><td>"+schedule[event]["mode"]+"</td></tr>";
+        }
+        tableString += "</table>";
+        document.getElementById("schedule").innerHTML = tableString;
+      }
+
+      function runBadgers() {
+        console.log("runBadgers");
+        // refresh the table
+        fillTable();
+
+        // find the next time
+        var now = new Date().getTime();
+        console.log("n "+now);
+        for (i = 0; i < schedule.length; i++) {
+          console.log("t "+schedule[i]["timesec"]);
+          if (schedule[i]["timesec"] >= now) {
+            currentTime = i;
+            break;
+          }
+        }
+        if (currentTime == schedule.length) return;
+
+        // set a time trigger
+        var timeout = schedule[currentTime]["timesec"] - now;
+        console.log("to "+timeout);
+        setTimeout(flashBadgers, timeout);
+
+      }
+
+      function flashBadgers() {
+        console.log("flashBadgers");
+        var subnet = document.getElementById("subnet").value;
+        for (i = 1; i < 254; i++) {
+          var url = "http://"+subnet+"."+i+"/leds?m="+schedule[currentTime]["mode"];
+          var x = new XMLHttpRequest();
+          x.open("GET",url,true);
+          x.timeout = 3000;
+          x.send();
+        }
+
+        // set a timer for the delay time
+        setTimeout(clearBadgers, schedule[currentTime]["duration"]*1000);
+      }
+
+      function clearBadgers() {
+        console.log("clearBadgers");
+        var subnet = document.getElementById("subnet").value;
+        for (i = 1; i < 254; i++) {
+          var url = "http://"+subnet+"."+i+"/leds?m=none";
+          var x = new XMLHttpRequest();
+          x.open("GET",url,true);
+          x.timeout = 3000;
+          x.send();
+        }
+
+        // refresh the table
+        fillTable();
+
+        // find the next time
+        currentTime++;
+        if (currentTime >= schedule.length) return;
+
+        var now = new Date().getTime();
+        var timeout = schedule[currentTime]["timesec"] - now;
+        console.log("to "+timeout);
+        setTimeout(flashBadgers, timeout);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="controls">
+      <button name="start" onclick="runBadgers()">Start</button>
+      <label for="subnet">Subnet</label>
+      <input id="subnet" type="text" value="192.168.0"></input>
+    </div>
+    <div id="schedule">
+    </div>
+  </body>
+</html>
