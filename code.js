@@ -1,14 +1,14 @@
-ip = "192.168.43.123";
+urlBase = "http://192.168.0.100";
 
 function startup() {
     console.log("I'm a startup function");
     $("#badger-name").change(function(event) {
-	var name = event.target.value;
-	$.ajax("http://"+ip+"/config?n="+name, {
-	    success: function(data) {
-		console.log("changed name succesfully");
-	    }
-	});
+        var name = event.target.value;
+        $.ajax(urlBase+"/config?n="+name, {
+            success: function(data) {
+            console.log("changed name succesfully");
+            }
+        });
     });
 
     //todo:
@@ -17,36 +17,104 @@ function startup() {
     // fix config
 
     $("body").pagecontainer({
-	beforechange: function( event, ui ) {
-	    var toPage = ui.toPage;
-	    if (typeof(toPage) == 'string' && toPage.indexOf("#this-badger") > -1) {
-		$.ajax("http://"+ip+"/config", {
-		    success: function(data) {
-			$("#badger-name").attr("value", data.split(",",2)[1]);
-			}
-		    });
-		$.ajax("http://"+ip+"/blink?d=0", {
-		    success: function(data) {
-			var value = Math.round(data*100/1023.0);
-			$("#tail").attr('value', value.toString());
-			$("#tail").slider('refresh');
-			$("#tail").on("slidestop", function( event, ui ) {
-			    console.log("value:"+event.target.value);
-			    var adjusted_value = Math.round(event.target.value * 1023/100.0);
-			    var url = "http://"+ip+"/blink?d=0&v=" + adjusted_value;
-    			    $.ajax(url, {
-				success: function(data) {
-				    console.log("changed blink value success");
-				}
-			    });
+        beforechange: function( event, ui ) {
+            var toPage = ui.toPage;
+            if (typeof(toPage) == 'string' && toPage.indexOf("#this-badger") > -1) {
+                $.ajax(urlBase+"/config", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        $("#badger-name").attr("value", obj["n"]);
+                    }
+                });
+                $.ajax(urlBase+"/leds?d=0", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        if (obj["s"]=="on") $("#tail").click(); // this really sucks but it works
+                        $("#tail").on("change", function( event, ui ) {
+                            console.log("value:"+event.target.value);
+                            var adjusted_value = (event.target.value == "on") ? 1 : 0;
+                            var url = urlBase+"/leds?d=0&s=" + adjusted_value;
+                            $.ajax(url, {
+                                success: function(data) {
+                                    console.log("changed light state");
+                                }
+                            });
 
-			});
-		    }
-		});
+                        });
+                    }
+                });
+                $.ajax(urlBase+"/leds?d=1", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        if (obj["s"]=="on") $("#back-foot").click(); // this really sucks but it works
+                        $("#back-foot").on("change", function( event, ui ) {
+                            console.log("value:"+event.target.value);
+                            var adjusted_value = (event.target.value == "on") ? 1 : 0;
+                            var url = urlBase+"/leds?d=1&s=" + adjusted_value;
+                            $.ajax(url, {
+                                success: function(data) {
+                                    console.log("changed light state");
+                                }
+                            });
 
-		console.log("going to this badger");
-	    }
-	}
+                        });
+                    }
+                });
+                $.ajax(urlBase+"/leds?d=2", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        if (obj["s"]=="on") $("#front-foot").click(); // this really sucks but it works
+                        $("#front-foot").on("change", function( event, ui ) {
+                            console.log("value:"+event.target.value);
+                            var adjusted_value = (event.target.value == "on") ? 1 : 0;
+                            var url = urlBase+"/leds?d=2&s=" + adjusted_value;
+                            $.ajax(url, {
+                                success: function(data) {
+                                    console.log("changed light state");
+                                }
+                            });
+
+                        });
+                    }
+                });
+                $.ajax(urlBase+"/leds?d=3", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        if (obj["s"]=="on") $("#nose").click(); // this really sucks but it works
+                        $("#nose").on("change", function( event, ui ) {
+                            console.log("value:"+event.target.value);
+                            var adjusted_value = (event.target.value == "on") ? 1 : 0;
+                            var url = urlBase+"/leds?d=3&s=" + adjusted_value;
+                            $.ajax(url, {
+                                success: function(data) {
+                                    console.log("changed light state");
+                                }
+                            });
+
+                        });
+                    }
+                });
+                $.ajax(urlBase+"/leds?d=4", {
+                    success: function(data) {
+                        var obj = JSON.parse(data);
+                        if (obj["s"]=="on") $("#eye").click(); // this really sucks but it works
+                        $("#eye").on("change", function( event, ui ) {
+                            console.log("value:"+event.target.value);
+                            var adjusted_value = (event.target.value == "on") ? 1 : 0;
+                            var url = urlBase+"/leds?d=4&s=" + adjusted_value;
+                            $.ajax(url, {
+                                success: function(data) {
+                                    console.log("changed light state");
+                                }
+                            });
+
+                        });
+                    }
+                });
+
+                console.log("going to this badger");
+            }
+        }
     });
 
 }
